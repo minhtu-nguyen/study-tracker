@@ -1,0 +1,50 @@
+[x] "Java for Programmers"
+[x] "Computer Science Bootcamp"
+[ ] "Learn to Code: Become a Software Engineer"
+[ ] "Become a Database Professional with SQL"
+[ ] "Microservices Architecture"
+[ ] "Become a Distributed Systems Professional"
+[ ] "Scalability & System Design for Developers"
+[ ] "Fundamentals of DevOps"
+[ ] "DevOps for Developers"
+[ ] "Mastering Version Control and Trace Analysis"
+[ ] "Deep Dive into System Design Interview"
+[ ] "Software Development Methodologies"
+[ ] "Cyber Security Fundamentals"
+[ ] "Web App Security"
+[ ] "Web Essentials"
+[ ] "Become an API Integrator"
+[ ] "Zero to Hero in Java"
+[ ] "Spring Boot Development for Java Programmers"
+[ ] "Test Automation"
+[ ] "Zero to Hero in Back-end Web Development"
+[ ] "Become a MERN Stack Developer"
+[ ] "Managing AI-based Software Products"
+[ ] "Web Authentication and Authorization"
+[ ] "Ace the Front End Interview"
+[ ] "Ace the Java Coding Interview"
+[ ] "Grokking Blind 75 in Java: Mastery through Coding Patterns"
+[ ] "Grokking Grind 75 in Java: Mastery through Coding Patterns"
+[ ] "Educative-77 in Java: Accelerate Your Coding Interview Prep"
+[ ] "Educative-99 in Java: Accelerate Your Coding Interview Prep"
+[ ] "Become a Python-based API Integrator"
+[ ] "Ace the APIs for Social Media"
+[ ] "Ace the APIs for Online Payment"
+[ ] "Become a Ruby Professional"
+[ ] "Become a Node.js Developer"
+[ ] "Zero to Hero in Ruby"
+[ ] "Mastering Blockchain Development"
+[ ] "Become an AWS Professional
+[ ] "Mastering Selenium"
+[ ] "Fundamentals of AWS"
+[ ] "Become a prompt engineer"
+[ ]
+[ ]
+[ ]
+[ ]
+[ ]
+[ ]
+[ ]
+[ ]
+[ ]
+[ ]
