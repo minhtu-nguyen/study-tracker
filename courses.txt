@@ -1,5 +1,6 @@
 [x] "Java for Programmers"
 [x] "Computer Science Bootcamp"
+- Project Wordle 1/2
 [ ] "Learn to Code: Become a Software Engineer"
 [ ] "Become a Database Professional with SQL"
 [ ] "Microservices Architecture"
