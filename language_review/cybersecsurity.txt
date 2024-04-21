@@ -1,0 +1,21 @@
+[
+  "CS HOME",
+  "CS Cyber Crime",
+  "CS Money Making Threats",
+  "CS Dark Web",
+  "CS Networking Basics",
+  "CS Network Layer",
+  "CS Network Transport",
+  "CS Firewalls",
+  "CS Web Applications",
+  "CS Mapping & Port Scanning",
+  "CS Network Attacks",
+  "CS  Web Application Attacks",
+  "CS WIFI Attacks",
+  "CS Passwords",
+  "CS Penetration Testing &\nSocial Engineering",
+  "CS Security Operations",
+  "CS Incident Response",
+  "CS Quiz",
+  "CS Certificate"
+]
