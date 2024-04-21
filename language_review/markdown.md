@@ -68,3 +68,7 @@ Fenced code blocks with syntax highlighting are as below
 
 Gone camping to explore emoji! :tent: Be back soon.
 
+| Syntax      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
