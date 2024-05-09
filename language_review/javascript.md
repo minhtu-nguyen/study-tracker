@@ -19,7 +19,7 @@ For best readability, programmers often like to avoid code lines longer than 80 
 All JavaScript identifiers are case sensitive. 
 JavaScript programmers tend to use camel case that starts with a lowercase letter:  
 firstName, lastName, masterCard, interCity.
-### JS Comments",
+### JS Comments
 Single line comments start with //.
 Multi-line comments start with /* and end with */.
 Using comments to prevent execution of code is suitable for code testing.
@@ -31,7 +31,7 @@ document.getElementById("myH").innerHTML = "My First Page";
 document.getElementById("myP").innerHTML = "My first paragraph.";
 */
 ```
-### JS Variables",
+### JS Variables
 Only use let if you can't use const
 Only use var if you MUST support old browsers.
 A variable declared without a value will have the value `undefined`.
@@ -43,7 +43,7 @@ price = 200;
 ```
 Using the dollar sign is not very common in JavaScript, but professional programmers often use it as an alias for the main function in a JavaScript library.
 Using the underscore is not very common in JavaScript, but a convention among professional programmers is to use it as an alias for "private (hidden)" variables.
-### JS Let",
+### JS Let
 Before ES6 (2015), JavaScript did not have Block Scope.
 JavaScript had Global Scope and Function Scope. ES6 introduced the two new JavaScript keywords: let and const.
 These two keywords provided Block Scope in JavaScript
@@ -69,11 +69,137 @@ var x = 2;
 `var` is hoisted.
 `var` binds to this.
 ### JS Const",
-### JS Operators",
-### JS Arithmetic",
-### JS Assignment",
-### JS Data Types",
-### JS Functions",
+The const keyword was introduced in ES6 (2015)   
+Variables defined with const cannot be Redeclared   
+Variables defined with const cannot be Reassigned
+Variables defined with const have Block Scope
+
+Always declare a variable with const when you know that the value should not be changed.
+Use const when you declare:
+- A new Array
+- A new Object
+- A new Function
+- A new RegExp
+
+The keyword const is a little misleading.
+It does not define a constant value. It defines a constant reference to a value.
+Because of this you **can NOT**:
+- Reassign a constant value
+- Reassign a constant array
+- Reassign a constant object
+But you **CAN**:
+- Change the elements of constant array
+- Change the properties of constant object
+
+### JS Operators
+There are different types of JavaScript operators:
+- Arithmetic Operators
+- Assignment Operators
+- Comparison Operators
+- String Operators
+- Logical Operators
+- Bitwise Operators
+- Ternary Operators
+- Type Operators (`typeof`, `instanceof`)
+
+### JS Arithmetic
+```js
+let x = 5;
+let y = 2;
+let z = x + y;
+let z = x - y;
+let z = x * y;
+let z = x / y;
+let z = x % y;
+x++;
+x--;
+let z = x ** 2;
+let z = Math.pow(x,2);
+```
+### JS Assignment
+```js
+let x = 10;
+x += 5;
+x -= 5;
+x -= 5;
+x *= 5;
+x **= 5;
+x /= 5;
+x %= 5;
+
+let x = -100;
+x <<= 5;
+x >>= 5;
+x >>>= 5;
+x &= 5;
+x |= 5;
+x ^= 5;
+x &&= 5; //The &&= operator is an ES2020 feature. If the first value is true, the second value is assigned.
+x ||= 5; //The ||= operator is an ES2020 feature. If the first value is false, the second value is assigned.
+x ??= 5; //The ??= operator is an ES2020 feature. If the first value is undefined or null, the second value is assigned.
+```
+
+### JS Data Types
+JavaScript has 8 Datatypes
+1. String
+2. Number
+3. Bigint
+4. Boolean
+5. Undefined
+6. Null
+7. Symbol
+8. Object
+
+The Object Datatype
+The object data type can contain:
+1. An object
+2. An array
+3. A date
+
+```js
+// Numbers:
+let length = 16;
+let weight = 7.5;
+
+// Strings:
+let color = "Yellow";
+let lastName = "Johnson";
+
+// Booleans
+let x = true;
+let y = false;
+
+// Object:
+const person = {firstName:"John", lastName:"Doe"};
+
+// Array object:
+const cars = ["Saab", "Volvo", "BMW"];
+
+// Date object:
+const date = new Date("2022-03-25");
+```
+
+When adding a number and a string, JavaScript will treat the number as a string. JavaScript evaluates expressions from left to right. Different sequences can produce different results:
+```js
+let x = 16 + 4 + "Volvo"; //20Volvo
+let x = "Volvo" + 16 + 4; //Volvo164
+```
+
+Javascript numbers are always one type:
+**double** (64-bit floating point).
+
+JavaScript BigInt is a new datatype (ES2020) that can be used to store integer values that are too big to be represented by a normal JavaScript Number.
+```js
+let x = BigInt("123456789012345678901234567890");
+```
+
+You can use the JavaScript `typeof` operator to find the type of a JavaScript variable.
+
+In JavaScript, a variable without a value, has the value `undefined`. The type is also `undefined`.
+
+### JS Functions
+
+
 ### JS Objects",
 ### JS Events",
 ### JS Strings",
