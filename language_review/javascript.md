@@ -832,19 +832,231 @@ d.setHours(22);
 d.setMinutes(30);
 d.setSeconds(30);
 ```
-### JS Math",
-### JS Random",
-### JS Booleans",
-### JS Comparisons",
-### JS If Else",
-### JS Switch",
-### JS Loop For",
-### JS Loop For In",
-### JS Loop For Of",
-### JS Loop While",
-### JS Break",
-### JS Iterables",
-### JS Sets",
+### JS Math
+```js
+Math.E        // returns Euler's number
+Math.PI       // returns PI
+Math.SQRT2    // returns the square root of 2
+Math.SQRT1_2  // returns the square root of 1/2
+Math.LN2      // returns the natural logarithm of 2
+Math.LN10     // returns the natural logarithm of 10
+Math.LOG2E    // returns base 2 logarithm of E
+Math.LOG10E   // returns base 10 logarithm of E
+
+Math.round(4.6);
+Math.ceil(4.2);
+Math.floor(4.7);
+Math.trunc(4.4); //integer part of x
+Math.sign(-4);
+Math.pow(8, 2);
+Math.sqrt(64);
+Math.abs(-4.7);
+Math.sin(90 * Math.PI / 180);     // returns 1 (the sine of 90 degrees)
+Math.cos(0 * Math.PI / 180);     // returns 1 (the cos of 0 degrees)
+Math.min(0, 150, 30, 20, -8, -200);
+Math.max(0, 150, 30, 20, -8, -200);
+Math.random(); //between 0 (inclusive), and 1 (exclusive)
+Math.log(3);
+Math.log2(8);
+Math.log10(1000);
+```
+
+### JS Random
+```js
+// Returns a random integer from 0 to 9:
+Math.floor(Math.random() * 10);
+// Returns a random integer from 0 to 10:
+Math.floor(Math.random() * 11);
+// Returns a random integer from 1 to 10:
+Math.floor(Math.random() * 10) + 1;
+// min (included) and max (excluded)
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min) ) + min;
+}
+// min and max (both included)
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+```
+### JS Booleans
+```js
+// false
+let x = 0;
+Boolean(x);
+let x = "";
+Boolean(x);
+let x; // undefined
+Boolean(x);
+let x = null;
+Boolean(x);
+let x = 10 / "Hallo"; // NaN
+Boolean(x);
+```
+### JS Comparisons
+```js
+let voteable = (age < 18) ? "Too young":"Old enough";
+
+// ?? operator returns the first argument if it is not nullish (null or undefined)
+let name = null;
+let text = "missing";
+let result = name ?? text;
+
+// ?. operator returns undefined if an object is undefined or null (instead of throwing an error)
+// Create an object:
+const car = {type:"Fiat", model:"500", color:"white"};
+// Ask for car name:
+document.getElementById("demo").innerHTML = car?.name;
+```
+### JS If Else
+```js
+if (time < 10) {
+  greeting = "Good morning";
+} else if (time < 20) {
+  greeting = "Good day";
+} else {
+  greeting = "Good evening";
+}
+
+```
+
+### JS Switch
+Switch cases use strict comparison (===). The values must be of the same type to match.
+```js
+switch (new Date().getDay()) {
+  case 4:
+  case 5:
+    text = "Soon it is Weekend";
+    break;
+  case 0:
+  case 6:
+    text = "It is Weekend";
+    break;
+  default:
+    text = "Looking forward to the Weekend";
+}
+
+let x = "0";
+switch (x) {
+  case 0:
+    text = "Off";
+    break;
+  case 1:
+    text = "On";
+    break;
+  default:
+    text = "No value found";
+}
+```
+### JS Loop For
+for (expression 1; expression 2; expression 3) {
+  // code block to be executed
+}
+Expression 1 is executed (one time) before the execution of the code block.
+Expression 2 defines the condition for executing the code block.
+Expression 3 is executed (every time) after the code block has been executed.
+```js
+for (let i = 0, len = cars.length, text = ""; i < len; i++) {
+  text += cars[i] + "<br>";
+}
+
+var i = 5;
+for (var i = 0; i < 10; i++) {
+  // some code
+}
+// Here i is 10
+
+let i = 5;
+for (let i = 0; i < 10; i++) {
+  // some code
+}
+// Here i is 5
+```
+
+### JS Loop For In
+Do not use for in over an Array if the index order is important.
+The index order is implementation-dependent, and array values may not be accessed in the order you expect.
+It is better to use a for loop, a for of loop, or Array.forEach() when the order is important.
+```js
+const numbers = [45, 4, 9, 16, 25];
+
+let txt = "";
+for (let x in numbers) {
+  txt += numbers[x];
+}
+
+numbers.forEach(myFunction);
+
+function myFunction(value, index, array) {
+  txt += value;
+}
+```
+
+### JS Loop For Of
+```js
+const cars = ["BMW", "Volvo", "Mini"];
+
+let text = "";
+for (let x of cars) {
+  text +=
+}
+```
+### JS Loop While
+```js
+do {
+  text += "The number is " + i;
+  i++;
+}
+while (i < 10);
+```
+### JS Break
+```js
+for (let i = 0; i < 10; i++) {
+  if (i === 3) { break; }
+  text += "The number is " + i + "<br>";
+}
+
+for (let i = 0; i < 10; i++) {
+  if (i === 3) { continue; }
+  text += "The number is " + i + "<br>";
+}
+
+label:
+statements
+
+const cars = ["BMW", "Volvo", "Saab", "Ford"];
+list: {
+  text += cars[0] + "<br>";
+  text += cars[1] + "<br>";
+  break list;
+  text += cars[2] + "<br>";
+  text += cars[3] + "<br>";
+}
+```
+### JS Iterables
+```js
+// Create an Object
+myNumbers = {};
+
+// Make it Iterable
+myNumbers[Symbol.iterator] = function() {
+  let n = 0;
+  done = false;
+  return {
+    next() {
+      n += 10;
+      if (n == 100) {done = true}
+      return {value:n, done:done};
+    }
+  };
+}
+
+for (const num of myNumbers) {
+  // Any Code Here
+}
+```
+### JS Sets
+
+
 ### JS Maps",
 ### JS Typeof",
 ### JS Type Conversion",
