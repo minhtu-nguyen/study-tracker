@@ -1055,29 +1055,731 @@ for (const num of myNumbers) {
 }
 ```
 ### JS Sets
+```js
+// Create a Set
+const letters = new Set(["a","b","c"]);
+
+// Create a Set
+const letters = new Set();
+
+// Add Values to the Set
+letters.add("a");
+letters.add("b");
+letters.add("c");
+
+// List all Elements
+let text = "";
+for (const x of letters) {
+  text += x;
+}
+// List all entries
+let text = "";
+letters.forEach (function(value) {
+  text += value;
+})
+
+// Get all Values
+const myIterator = letters.values();
+const myIterator = letters.keys(); // A Set has no keys, so keys() returns the same as values().
+const myIterator = letters.entries(); // Iterator with [value,value]
+
+// Does the Set contain "d"?
+answer = letters.has("d");
+```
+
+### JS Maps
+Map is an ES6 feature
+```js
+// Create a Map
+const fruits = new Map();
+
+// Set Map Values
+fruits.set("apples", 500);
+fruits.set("bananas", 300);
+fruits.set("oranges", 200);
+
+fruits.get("apples");    // Returns 500
+fruits.clear();
+fruits.set("apples", 500);
+fruits.size;
+fruits.delete("apples");
+fruits.has("apples");
+
+// List all entries
+let text = "";
+fruits.forEach (function(value, key) {
+  text += key + ' = ' + value;
+})
+
+// List all entries
+let text = "";
+for (const x of fruits.entries()) {
+  text += x;
+}
+
+// List all keys
+let text = "";
+for (const x of fruits.keys()) {
+  text += x;
+}
+
+// List all values
+let text = "";
+for (const x of fruits.values()) {
+  text += x;
+}
+
+// Create an Array
+const fruits = [
+  {name:"apples", quantity:300},
+  {name:"bananas", quantity:500},
+  {name:"oranges", quantity:200},
+  {name:"kiwi", quantity:150}
+];
+
+// Callback function to Group Elements
+function myCallback({ quantity }) {
+  return quantity > 200 ? "ok" : "low";
+}
+
+// Group by Quantity
+const result = Map.groupBy(fruits, myCallback);
+```
+Object.groupBy() groups elements into a JavaScript object.
+Map.groupBy() groups elements into a Map object.
 
 
-### JS Maps",
-### JS Typeof",
-### JS Type Conversion",
-### JS Bitwise",
-### JS RegExp",
-### JS Precedence",
-### JS Errors",
-### JS Scope",
-### JS Hoisting",
-### JS Strict Mode",
-### JS this Keyword",
-### JS Arrow Function",
-### JS Classes",
-### JS Modules",
-### JS JSON",
-### JS Debugging",
-### JS Style Guide",
-### JS Best Practices",
-### JS Mistakes",
-### JS Performance",
-### JS Reserved Words",
+### JS Typeof
+In JavaScript there are 5 different data types that can contain values:
+`string`
+`number`
+`boolean`
+`object`
+`function`
+There are 6 types of objects:
+`Object`
+`Date`
+`Array`
+`String`
+`Number`
+`Boolean`
+And 2 data types that cannot contain values:
+`null`
+`undefined`
+```js
+typeof "John"                 // Returns "string"
+typeof 3.14                   // Returns "number"
+typeof NaN                    // Returns "number"
+typeof false                  // Returns "boolean"
+typeof [1,2,3,4]              // Returns "object"
+typeof {name:'John', age:34}  // Returns "object"
+typeof new Date()             // Returns "object"
+typeof function () {}         // Returns "function"
+typeof myCar                  // Returns "undefined" *
+typeof null                   // Returns "object"
+
+typeof "John"              // Returns "string"
+typeof 3.14                // Returns "number"
+typeof true                // Returns "boolean"
+typeof false               // Returns "boolean"
+typeof x                   // Returns "undefined" (if x has no value)
+
+typeof {name:'John', age:34} // Returns "object"
+typeof [1,2,3,4]             // Returns "object" (not "array", see note below)
+typeof null                  // Returns "object"
+typeof function myFunc(){}   // Returns "function"
+
+"John".constructor                // Returns function String()  {[native code]}
+(3.14).constructor                // Returns function Number()  {[native code]}
+false.constructor                 // Returns function Boolean() {[native code]}
+[1,2,3,4].constructor             // Returns function Array()   {[native code]}
+{name:'John',age:34}.constructor  // Returns function Object()  {[native code]}
+new Date().constructor            // Returns function Date()    {[native code]}
+function () {}.constructor        // Returns function Function(){[native code]}
+
+typeof undefined           // undefined
+typeof null                // object
+
+null === undefined         // false
+null == undefined          // true
+```
+
+### JS Type Conversion
+| Original<br>Value | Converted<br>to Number | Converted<br>to String | Converted<br>to Boolean | Try it                                                                                           |
+| ----------------- | ---------------------- | ---------------------- | ----------------------- | ------------------------------------------------------------------------------------------------ |
+| false             | 0                      | "false"                | false                   | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_false)             |
+| true              | 1                      | "true"                 | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_true)              |
+| 0                 | 0                      | "0"                    | false                   | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_number_0)          |
+| 1                 | 1                      | "1"                    | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_number_1)          |
+| "0"               | 0                      | "0"                    | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_string_0)          |
+| "000"             | 0                      | "000"                  | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_string_000)        |
+| "1"               | 1                      | "1"                    | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_string_1)          |
+| NaN               | NaN                    | "NaN"                  | false                   | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_nan)               |
+| Infinity          | Infinity               | "Infinity"             | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_infinity)          |
+| \-Infinity        | \-Infinity             | "-Infinity"            | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_infinity_minus)    |
+| ""                | 0                      | ""                     | false                   | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_string_empty)      |
+| "20"              | 20                     | "20"                   | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_string_number)     |
+| "twenty"          | NaN                    | "twenty"               | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_string_text)       |
+| [ ]               | 0                      | ""                     | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_array_empty)       |
+| [20]              | 20                     | "20"                   | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_array_one_number)  |
+| [10,20]           | NaN                    | "10,20"                | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_array_two_numbers) |
+| ["twenty"]        | NaN                    | "twenty"               | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_array_one_string)  |
+| ["ten","twenty"]  | NaN                    | "ten,twenty"           | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_array_two_strings) |
+| function(){}      | NaN                    | "function(){}"         | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_function)          |
+| { }               | NaN                    | "[object Object]"      | true                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_object)            |
+| null              | 0                      | "null"                 | false                   | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_null)              |
+| undefined         | NaN                    | "undefined"            | false                   | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_type_convert_undefined)
+
+<br>   |
+
+### JS Bitwise
+JavaScript stores numbers as 64 bits floating point numbers, but all bitwise operations are performed on 32 bits binary numbers. Before a bitwise operation is performed, JavaScript converts numbers to 32 bits signed integers.
+After the bitwise operation is performed, the result is converted back to 64 bits JavaScript numbers.
+
+| Operator | Name                  | Description                                                                                              |
+| -------- | --------------------- | -------------------------------------------------------------------------------------------------------- |
+| &        | AND                   | Sets each bit to 1 if both bits are 1                                                                    |
+| \|       | OR                    | Sets each bit to 1 if one of two bits is 1                                                               |
+| ^        | XOR                   | Sets each bit to 1 if only one of two bits is 1                                                          |
+| ~        | NOT                   | Inverts all the bits                                                                                     |
+| <<       | Zero fill left shift  | Shifts left by pushing zeros in from the right and let the leftmost bits fall off                        |
+| \>>      | Signed right shift    | Shifts right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off |
+| \>>>     | Zero fill right shift | Shifts right by pushing zeros in from the left, and let the rightmost bits fall off<br><br>              |
+
+| Operation | Result | Same as      | Result |
+| --------- | ------ | ------------ | ------ |
+| 5 & 1     | 1      | 0101 & 0001  |  0001  |
+| 5 \| 1    | 5      | 0101 \| 0001 |  0101  |
+| ~ 5       | 10     |  ~0101       |  1010  |
+| 5 << 1    | 10     | 0101 << 1    |  1010  |
+| 5 ^ 1     | 4      | 0101 ^ 0001  |  0100  |
+| 5 >> 1    | 2      | 0101 >> 1    |  0010  |
+| 5 >>> 1   | 2      | 0101 >>> 1   |  0010  |
+
+```js
+function dec2bin(dec){
+  return (dec >>> 0).toString(2);
+}
+
+function bin2dec(bin){
+  return parseInt(bin, 2).toString(10);
+}
+```
+### JS RegExp
+`/pattern/modifiers;`
+`/w3schools/i;`
+
+| Modifier | Description                                                                                | Try it                                                                                |
+| -------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
+| i        | Perform case-insensitive matching                                                          | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_i)            |
+| g        | Perform a global match (find all)                                                          | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_g)            |
+| m        | Perform multiline matching                                                                 | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_m)            |
+| d        | Perform start and end matching (New in [ES2022](https://www.w3schools.com/js/js_2022.asp)) | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_inices)
+
+<br> |
+
+| Expression | Description                                     | Try it                                                                            |
+| ---------- | ----------------------------------------------- | --------------------------------------------------------------------------------- |
+| [abc]      | Find any of the characters between the brackets | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_abc)      |
+| [0-9]      | Find any of the digits between the brackets     | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_0-9)      |
+| (x\|y)     | Find any of the alternatives separated with \|  | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_xy)
+
+<br> |
+
+| Metacharacter | Description                                                                                            | Try it                                                                                                                                                    |
+| ------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| \\d           | Find a digit                                                                                           | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_d)                                                                                |
+| \\s           | Find a whitespace character                                                                            | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_s)                                                                                |
+| \\b           | Find a match at the beginning of a word like this: \\bWORD, or at the end of a word like this: WORD\\b | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_b)<br>[Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_b2) |
+| \\uxxxx       | Find the Unicode character specified by the hexadecimal number xxxx                                    | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_ux)
+
+<br>                                                                         |
+
+| Quantifier | Description                                                      | Try it                                                                      |
+| ---------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| n+         | Matches any string that contains at least one _n_                | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_n1) |
+| n\*        | Matches any string that contains zero or more occurrences of _n_ | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_n2) |
+| n?         | Matches any string that contains zero or one occurrences of _n_  | [Try it »](https://www.w3schools.com/js/tryit.asp?filename=tryjs_regexp_n3) |
+```js
+/e/.test("The best things in life are free!"); // true/ false
+/e/.exec("The best things in life are free!"); // text/ null
+```
+
+### JS Precedence
+Expressions in parentheses are computed before the rest of the expression  
+Function are executed before the result is used in the rest of the expression   
+Postfix increments are executed before prefix increments   
+Exponentiations are executed before multiplications   
+Multiplications and divisions are executed before additions and subtractions   
+Assignments are executed after other operations   
+[Details](https://www.w3schools.com/js/js_precedence.asp)
+
+### JS Errors
+```js
+function myFunction() {
+  const message = document.getElementById("p01");
+  message.innerHTML = "";
+  let x = document.getElementById("demo").value;
+  try {
+    if(x.trim() == "") throw "is empty";
+    if(isNaN(x)) throw "is not a number";
+    x = Number(x);
+    if(x > 10) throw "is too high";
+    if(x < 5) throw "is too low";
+  }
+  catch(err) {
+    message.innerHTML = "Error: " + err + ".";
+  }
+  finally {
+    document.getElementById("demo").value = "";
+  }
+}
+
+```
+
+### JS Scope
+Before ES6 (2015), JavaScript variables had only Global Scope and Function Scope.   
+ES6 introduced two important new JavaScript keywords: let and const.   
+These two keywords provide Block Scope in JavaScript.   
+
+If you assign a value to a variable that has not been declared, it will automatically become a GLOBAL variable. Do NOT create global variables unless you intend to.
+```js
+myFunction();
+
+// code here can use carName
+
+function myFunction() {
+  carName = "Volvo";
+}
+```
+
+### JS Hoisting
+In JavaScript, a variable can be declared after it has been used.
+```js
+x = 5; // Assign 5 to x
+
+elem = document.getElementById("demo"); // Find an element
+elem.innerHTML = x;                     // Display x in the element
+
+var x; // Declare x
+```
+JavaScript only hoists declarations, not initializations.   
+To avoid bugs, always declare all variables at the beginning of every scope.
+```js
+var x = 5; // Initialize x
+
+elem = document.getElementById("demo"); // Find an element
+elem.innerHTML = x + " " + y;           // Display x and y
+
+var y = 7; // Initialize y
+```
+
+Variables defined with let and const are hoisted to the top of the block, but not initialized.   
+Meaning: The block of code is aware of the variable, but it cannot be used until it has been declared.
+
+### JS Strict Mode
+```js
+"use strict";
+x = 3.14;                // Using a variable, without declaring it, is not allowed
+x = {p1:10, p2:20};      // Using an object, without declaring it, is not allowed
+let x = 3.14;
+delete x;                // Deleting a variable (or object) is not allowed
+function x(p1, p2) {};
+delete x;                // Deleting a function is not allowed
+function x(p1, p1) {};   // Duplicating a parameter name is not allowed
+let x = 010;             // Octal numeric literals are not allowed
+let x = "\010";            // Octal escape characters are not allowed
+const obj = {};
+Object.defineProperty(obj, "x", {value:0, writable:false});
+obj.x = 3.14;  // Writing to a read-only property is not allowed
+const obj = {get x() {return 0} };
+obj.x = 3.14;            // Writing to a get-only property is not allowed
+delete Object.prototype; // Deleting an undeletable property is not allowed
+let eval = 3.14;         // The word eval cannot be used as a variable
+```
+
+For security reasons, eval() is not allowed to create variables in the scope from which it was called.
+```js
+"use strict";
+eval ("x = 2");
+alert (x);      // a variable can not be used before it is declared
+
+eval ("var x = 2");
+alert (x);    // eval() can not declare a variable using the var keyword
+
+eval ("let x = 2");
+alert (x);        // eval() can not declare a variable using the let keyword
+```
+
+The this keyword in functions behaves differently in strict mode.   
+The this keyword refers to the object that called the function.   
+If the object is not specified, functions in strict mode will return undefined and functions in normal mode will return the global object (window):
+```js
+"use strict";
+function myFunction() {
+  alert(this); // will alert "undefined"
+}
+myFunction();
+```
+Keywords reserved for future JavaScript versions can NOT be used as variable names in strict mode.
+
+### JS this Keyword
+In JavaScript, the this keyword refers to an object.
+- In an object method, this refers to the object.
+- Alone, this refers to the global object.
+- In a function, this refers to the global object.
+- In a function, in strict mode, this is undefined.
+- In an event, this refers to the element that received the event.
+- Methods like call(), apply(), and bind() can refer this to any object.
+```js
+const person = {
+  firstName: "John",
+  lastName : "Doe",
+  id       : 5566,
+  fullName : function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+
+const person1 = {
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+const person2 = {
+  firstName:"John",
+  lastName: "Doe",
+}
+
+// Return "John Doe":
+person1.fullName.call(person2); // call() and apply() used to call an object method with another object as argument.
+
+const person = {
+  firstName:"John",
+  lastName: "Doe",
+  fullName: function () {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+const member = {
+  firstName:"Hege",
+  lastName: "Nilsen",
+}
+
+let fullName = person.fullName.bind(member); // bind() method, an object can borrow a method from another object
+```
+### JS Arrow Function
+the `this` keyword represents the object that owns the function, no matter who calls the function.
+```js
+// Regular Function:
+hello = function() {
+  document.getElementById("demo").innerHTML += this;
+}
+
+// The window object calls the function:
+window.addEventListener("load", hello);
+
+// A button object calls the function:
+document.getElementById("btn").addEventListener("click", hello);
+
+// Arrow Function:
+hello = () => {
+  document.getElementById("demo").innerHTML += this;
+}
+
+// The window object calls the function:
+window.addEventListener("load", hello);
+
+// A button object calls the function:
+document.getElementById("btn").addEventListener("click", hello); // still window
+```
+
+### JS Classes
+JavaScript Classes are templates for JavaScript Objects.
+```js
+class Car {
+  constructor(name, year) {
+    this.name = name;
+    this.year = year;
+  }
+  age(x) {
+    return x - this.year;
+  }
+}
+
+const date = new Date();
+let year = date.getFullYear();
+
+const myCar = new Car("Ford", 2014);
+document.getElementById("demo").innerHTML=
+"My car is " + myCar.age(year) + " years old.";
+```
+
+### JS Modules
+```js
+export const name = "Jesse";
+export const age = 40;
+
+const name = "Jesse";
+const age = 40;
+export {name, age};
+
+const message = () => {
+const name = "Jesse";
+const age = 40;
+return name + ' is ' + age + 'years old.';
+};
+export default message; // one default export in a file
+
+import { name, age } from "./person.js"; // named exports
+import message from "./message.js"; // default export
+```
+
+### JS JSON
+```js
+let text = '{ "employees" : [' +
+'{ "firstName":"John" , "lastName":"Doe" },' +
+'{ "firstName":"Anna" , "lastName":"Smith" },' +
+'{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+
+const obj = JSON.parse(text); // convert the string into a JavaScript object
+```
+### JS Debugging
+```js
+a = 5;
+b = 6;
+c = a + b;
+console.log(c);
+
+let x = 15 * 5;
+debugger; // stops the execution of JavaScript, and calls (if available) the debugging function.
+document.getElementById("demo").innerHTML = x;
+```
+### JS Style Guide
+```js
+firstName = "John"; // camelCase
+lastName = "Doe";
+
+price = 19.90; // letter
+tax = 0.20;
+
+let x = y + z; // spaces around operators ( = + - * / ), and after commas
+const myArray = ["Volvo", "Saab", "Fiat"];
+
+function toCelsius(fahrenheit) {
+  return (5 / 9) * (fahrenheit - 32); // 2 spaces for indentation. Different editors interpret tabs differently.
+}
+
+const cars = ["Volvo", "Saab", "Fiat"]; // end a simple statement with a semicolon
+
+function toCelsius(fahrenheit) {
+  return (5 / 9) * (fahrenheit - 32);
+} // Do not end a complex statement with a semicolon.
+
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 50,
+  eyeColor: "blue"
+}; // Always end an object definition with a semicolon.
+
+document.getElementById("demo").innerHTML =
+"Hello Dolly."; //  avoid lines longer than 80 characters
+```
+Hyphens can be mistaken as subtraction attempts. Hyphens are not allowed in JavaScript names. `hyp-hens`, `camelCase`, or `under_scores`
+Most web servers (Apache, Unix) are case sensitive about file names. To avoid these problems, always use lower case file names (if possible).
+
+### JS Best Practices
+Avoid global variables, avoid `new`, avoid `==` avoid `eval()`   
+The eval() function is used to run text as code. In almost all cases, it should not be necessary to use it.
+
+Because it allows arbitrary code to be run, it also represents a security problem.
+```js
+// All variables used in a function should be declared as local variables.
+// Declare at the beginning
+let firstName, lastName, price, discount, fullPrice;
+// Use later
+firstName = "John";
+lastName = "Doe";
+price = 19.90;
+discount = 0.10;
+fullPrice = price - discount;
+
+// Declare and initiate at the beginning
+let firstName = "";
+let lastName = "";
+let price = 0;
+let discount = 0;
+let fullPrice = 0,
+const myArray = [];
+const myObject = {};
+
+const car = {type:"Fiat", model:"500", color:"white"}; // Declaring objects with const will prevent any accidental change of type
+
+const cars = ["Saab", "Volvo", "BMW"]; // Declaring arrays with const will prevent any accidential change of type:
+```
+Don't Use new Object()
+- Use "" instead of new String()
+- Use 0 instead of new Number()
+- Use false instead of new Boolean()
+- Use {} instead of new Object()
+- Use [] instead of new Array()
+- Use /()/ instead of new RegExp()
+- Use function (){} instead of new Function()
+```js
+let x1 = "";             // new primitive string
+let x2 = 0;              // new primitive number
+let x3 = false;          // new primitive boolean
+const x4 = {};           // new object
+const x5 = [];           // new array object
+const x6 = /()/;         // new regexp object
+const x7 = function(){}; // new function object
+```
+Beware of Automatic Type Conversions
+```js
+let x = "Hello";     // typeof x is a string
+x = 5;               // changes typeof x to a number
+
+let x = 5 + 7;       // x.valueOf() is 12,  typeof x is a number
+let x = 5 + "7";     // x.valueOf() is 57,  typeof x is a string
+let x = "5" + 7;     // x.valueOf() is 57,  typeof x is a string
+let x = 5 - 7;       // x.valueOf() is -2,  typeof x is a number
+let x = 5 - "7";     // x.valueOf() is -2,  typeof x is a number
+let x = "5" - 7;     // x.valueOf() is -2,  typeof x is a number
+let x = 5 - "x";     // x.valueOf() is NaN, typeof x is a number
+"Hello" - "Dolly"    // does not generate an error but returns NaN (Not a Number)
+
+0 == "";        // true
+1 == "1";       // true
+1 == true;      // true
+
+0 === "";       // false
+1 === "1";      // false
+1 === true;     // false
+
+function (a=1, b=1) { /*function code*/ } // It is a good habit to assign default values to arguments.
+
+switch (new Date().getDay()) {
+  case 0:
+    day = "Sunday";
+    break;
+  case 1:
+    day = "Monday";
+    break;
+  case 2:
+    day = "Tuesday";
+    break;
+  case 3:
+    day = "Wednesday";
+    break;
+  case 4:
+    day = "Thursday";
+    break;
+  case 5:
+    day = "Friday";
+    break;
+  case 6:
+    day = "Saturday";
+    break;
+  default: // Always end your switch statements with a default
+    day = "Unknown";
+}
+
+// Always treat numbers, strings, or booleans as primitive values. Not as objects.
+let x = new String("John");             
+let y = new String("John");
+(x == y) // is false because you cannot compare objects.
+```
+### JS Mistakes
+```js
+let x = 0;
+if (x = 10) // Accidentally Using the Assignment Operator
+
+let x = 10;
+switch(x) {
+  case "10": alert("Hello"); // will not display an alert. switch statements use strict comparison
+}
+
+let x = 10;
+x = 10 + 5;       // Now x is 15
+let y = 10;
+y += "5";        // Now y is "105". Confusing Addition & Concatenation
+
+let x = 0.1;
+let y = 0.2;
+let z = x + y            // the result in z will not be 0.3. Misunderstanding Floats
+
+let z = (x * 10 + y * 10) / 10;       // z will be 0.3
+
+let x = "Hello 
+World!"; // errror
+
+let x = "Hello \
+World!";
+
+if (x == 19); // misplaced semicolon
+{
+  // code block 
+}
+
+function myFunction(a) {
+  let
+  power = 10; 
+  return // Never break a return statement.
+  a * power;
+}
+
+person = {firstName:"John", lastName:"Doe", age:46,} // Trailing commas in object and array definition are legal in ECMAScript 5.
+points = [40, 100, 1, 5, 25, 10,]; // JSON does not allow trailing commas.
+```
+In JavaScript, objects use named indexes.   
+If you use a named index, when accessing an array, JavaScript will redefine the array to a standard object.   
+After the automatic redefinition, array methods and properties will produce undefined or incorrect results   
+```js
+const person = [];
+person["firstName"] = "John";
+person["lastName"] = "Doe";
+person["age"] = 46;
+person.length;      // person.length will return 0
+person[0];          // person[0] will return undefined
+```
+JavaScript objects, variables, properties, and methods can be undefined.   
+In addition, empty JavaScript objects can have the value null.
+You cannot test if an object is null, because this will throw an error if the object is undefined.
+```js
+if (myObj !== null && typeof myObj !== "undefined") // error
+if (typeof myObj !== "undefined" && myObj !== null)  // correct
+```
+### JS Performance
+```js
+for (let i = 0; i < arr.length; i++) // bad
+let l = arr.length; // Statements or assignments that can be placed outside the loop will make the loop run faster.
+for (let i = 0; i < l; i++) // better
+
+const obj = document.getElementById("demo"); // If you expect to access a DOM element several times, access it once, and use it as a local variable
+
+// Keep the number of elements in the HTML DOM small.
+
+let fullName = firstName + " " + lastName; // Unnecessary Variables
+document.getElementById("demo").innerHTML = fullName;
+document.getElementById("demo").innerHTML = firstName + " " + lastName;
+
+//Putting your scripts at the bottom of the page body lets the browser load the page first.
+// An alternative is to use defer="true" in the script tag. 
+// If possible, you can add your script to the page by code, after the page has loaded
+<script>
+window.onload = function() {
+  const element = document.createElement("script");
+  element.src = "myScript.js";
+  document.body.appendChild(element);
+};
+</script>
+```
+Avoid using the `with` keyword. It has a negative effect on speed. It also clutters up JavaScript scopes.   
+The `with` keyword is not allowed in strict mode.
+### JS Reserved Words
 ### JS Versions",
 ### JS 2009 (ES5)",
 ### JS 2015 (ES6)",
