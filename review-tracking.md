@@ -1,4 +1,6 @@
 ### Tracking my progress
 - [x] Markdown
 - [x] Java
-- [-] JavaScript
+- [x] JavaScript
+- [x] NodeJS
+- [x] TypeScript
