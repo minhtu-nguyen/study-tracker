@@ -4,3 +4,5 @@
 - [x] JavaScript
 - [x] NodeJS
 - [x] TypeScript
+- [x] Git
+- [-] SQL
